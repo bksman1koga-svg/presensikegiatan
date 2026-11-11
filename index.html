@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><title>Absen Ekstrakurikuler — Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--tx:#1b2333;--mu:#64708a;--pr:#2f6fed;--bd:#dde3ef;--ok:#16a34a;--er:#dc2626;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1420;--card:#192031;--tx:#e8ecf5;--mu:#93a0ba;--pr:#5b8cff;--bd:#2a3350}}
+:root[data-theme="dark"]{--bg:#0f1420;--card:#192031;--tx:#e8ecf5;--mu:#93a0ba;--pr:#5b8cff;--bd:#2a3350}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,Segoe UI,Roboto,sans-serif}
+.hero{position:fixed;inset:0;z-index:5;overflow:auto;display:grid;place-items:center;padding:calc(24px + env(safe-area-inset-top,0px)) 20px calc(24px + env(safe-area-inset-bottom,0px));background:linear-gradient(135deg,#1d4ed8,#7c3aed 55%,#db2777);color:#fff}
+.bl{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:fl 12s ease-in-out infinite alternate;pointer-events:none}
+@keyframes fl{to{transform:translate(40px,-50px) scale(1.25)}}@keyframes up{from{opacity:0;transform:translateY(18px)}}
+.gl{position:relative;z-index:1;width:100%;max-width:980px;display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center;animation:up .7s both}
+@media(max-width:780px){.gl{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(30px,5vw,50px);line-height:1.1;margin:.25em 0}.hero p{opacity:.9;margin:.4em 0}
+.tag{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);padding:3px 12px;border-radius:99px;font-size:12px;letter-spacing:.5px}
+.logo{width:clamp(120px,24vw,170px);height:clamp(120px,24vw,170px);border-radius:32px;background:#fff;display:grid;place-items:center;font-size:76px;overflow:hidden;box-shadow:0 10px 30px #0004}.logo img{width:100%;height:100%;object-fit:contain}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}.chips span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:3px 11px;border-radius:99px;font-size:12px}
+.stt{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}.stt div{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:10px 16px;font-size:12px}.stt b{font-size:24px;display:block}
+.pnl{background:rgba(255,255,255,.15);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.35);border-radius:26px;padding:28px;box-shadow:0 24px 70px #0005;animation:up .9s .15s both}
+.pnl label{color:#fff;opacity:.92}.pnl input{width:100%;background:rgba(255,255,255,.95);color:#111;border:0;padding:12px 14px;border-radius:12px}
+.pnl .sw{display:flex;gap:4px;background:rgba(255,255,255,.18);border-radius:14px;padding:4px;margin-bottom:18px}.pnl .sw button{margin:0;padding:9px;background:transparent;color:#fff;font-size:14px;box-shadow:none}.pnl .sw .on{background:#fff;color:#5b21b6}
+.pnl .sp{display:flex;align-items:center;gap:6px;font-size:13px;margin-top:10px}.pnl .sp input{width:auto}
+.pnl button{width:100%;margin-top:14px;background:#fff;color:#5b21b6;font-weight:700;padding:13px;border-radius:12px;font-size:16px;transition:transform .15s}.pnl button:hover{transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+.w{max-width:1000px;margin:0 auto;padding:16px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:14px}
+h1,h2,h3{margin:.2em 0 .5em}
+button,.b{background:var(--pr);color:#fff;border:0;border-radius:8px;padding:9px 14px;font:inherit;cursor:pointer}
+button.g{background:transparent;color:var(--pr);border:1px solid var(--pr)}button.d{background:var(--er)}
+input,select{font:inherit;padding:8px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);max-width:100%}
+label{display:block;margin:8px 0 3px;color:var(--mu);font-size:13px}
+.r{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.g4{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.st{background:var(--bg);border-radius:10px;padding:12px}.st b{font-size:26px;display:block}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%}th,td{padding:7px 9px;border-bottom:1px solid var(--bd);text-align:left;font-size:14px;white-space:nowrap}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px}.tabs button{background:var(--card);color:var(--tx);border:1px solid var(--bd);white-space:nowrap}.tabs .on{background:var(--pr);color:#fff}
+.msg{padding:10px;border-radius:8px;margin:8px 0}.ok{background:#16a34a22;color:var(--ok)}.er{background:#dc262622;color:var(--er)}
+video{width:100%;max-width:340px;border-radius:12px;background:#000;transform:scaleX(-1)}
+.org{padding:14px 8px;text-align:center;background:var(--bg);border:1px solid var(--bd);color:var(--tx);font-weight:600}
+.card{display:inline-block;width:240px;border:1px solid #000;border-radius:8px;padding:8px;margin:6px;text-align:center;color:#000;background:#fff;vertical-align:top}
+#print{display:none}
+@media print{body>*:not(#print){display:none!important}#print{display:block}}
+</style></head><body>
+<div class="w" id="app"></div><div id="print"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const ORGS=["MPK","OSIS","PIK-R","ROHIS","ROHIN","ROKRIS","ROKAT","DIKSI","ENGLISH CLUB","KIR","MUNSSAGA","OLIMPIADE","PASKIB","PKS","PMR","PRAMUKA","ROBOTIK","SNIKERS","SULAM TAPIS"];
+const COL=["#e6194b","#3cb44b","#4363d8","#f58231","#911eb4","#0aa5b5","#f032e6","#7a9a01","#b8860b","#008080","#9a6324","#800000","#808000","#000075","#e07b9a","#2f9e7b","#ff7f50","#6a5acd","#20a0d0"];
+const KEY="absen_ekskul_v1";
+let DB={students:[],att:[],set:{sekolah:"Absen Ekstrakurikuler",kepsek:"",nipKepsek:"",pembina:"",nipPembina:"",logo:"",lat:0,lng:0,rad:120}};
+let USER="",PASS="";
+const API_BASE=location.hostname.endsWith("github.io")?"https://absen-intra-ekstra.vercel.app":"";
+const api=async(u,b,h={})=>{let r;try{r=await fetch(API_BASE+u,{method:"POST",headers:{"content-type":"application/json",...h},body:JSON.stringify(b)})}catch(e){throw new Error("Tidak bisa terhubung ke server. Periksa internet atau alamat server.")}
+ const j=await r.json().catch(()=>null);if(!j)throw new Error(r.status==404?"Server database tidak ditemukan (404). Pastikan folder api ikut di-deploy di Vercel.":"Server error (kode "+r.status+"). Buka /api/ping untuk cek database, atau lihat Logs di Vercel.");if(!r.ok)throw new Error(j.error||"Terjadi kesalahan");return j};
+const A=(action,d={})=>api("/api/admin",{action,...d},{"x-admin-user":USER,"x-admin-pass":PASS});
+const save=()=>A("saveStudents",{students:DB.students.map(({nis,nisn,nama,kelas})=>({nis,nisn,nama,kelas}))}).catch(e=>alert(e.message));
+async function ld(){const r=await A("load");DB.students=r.students;DB.att=r.att;DB.set=r.set}
+async function tab(t){S.tab=t;try{await ld()}catch(e){}render()}
+const $=s=>document.querySelector(s),app=$("#app");
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let S={v:"home",tab:"dash",me:null,org:null,q:"",kl:"",so:"nama",stream:null,msg:""};
+const pad=n=>String(n).padStart(2,"0"),ymd=t=>{const d=new Date(t);return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())};
+const fmt=t=>{const d=new Date(t);return ymd(t)+" "+pad(d.getHours())+":"+pad(d.getMinutes())};
+function range(p,ds){const d=new Date(ds+"T00:00:00"),y=d.getFullYear(),m=d.getMonth();let a,b;
+ if(p=="harian"){a=d;b=new Date(y,m,d.getDate()+1)}
+ else if(p=="mingguan"){const k=(d.getDay()+6)%7;a=new Date(y,m,d.getDate()-k);b=new Date(y,m,d.getDate()-k+7)}
+ else if(p=="bulanan"){a=new Date(y,m,1);b=new Date(y,m+1,1)}
+ else if(p=="semester"){const s=m>=6?6:0;a=new Date(y,s,1);b=new Date(y,s+6,1)}
+ else{a=new Date(y,0,1);b=new Date(y+1,0,1)}
+ return[+a,+b]}
+const inR=(p,ds)=>{const[a,b]=range(p,ds);return DB.att.filter(x=>x.ts>=a&&x.ts<b)};
+const today=()=>ymd(Date.now());
+function stopCam(){if(S.stream){S.stream.getTracks().forEach(t=>t.stop());S.stream=null}}
+function go(v,t){stopCam();S.v=v;if(t)S.tab=t;S.msg="";render()}
+function render(){
+ if(S.v=="home")S.v="alogin";
+ if(false)return app.innerHTML=`<div class="c" style="max-width:420px;margin:30px auto">
+ <h2>Absen Ekstrakurikuler</h2><p style="color:var(--mu)">${esc(DB.set.sekolah)}</p>
+ <label>NIS / NISN</label><input id="nis" style="width:100%" placeholder="Masukkan NIS atau NISN" onkeydown="event.key=='Enter'&&loginS()">
+ <div class="r" style="margin-top:12px"><button onclick="loginS()">Masuk</button><button class="g" onclick="go('alogin')">Login Admin</button></div>${S.msg}</div>`;
+ if(S.v=="alogin"){const lm=S.lm||"siswa",L=DB.set.logo,hd=(S.cnt||{}).hadir||0;return app.innerHTML=`<div class="hero"><div class="bl" style="width:380px;height:380px;background:#22d3ee;top:-100px;left:-80px"></div><div class="bl" style="width:320px;height:320px;background:#f472b6;bottom:-90px;right:-60px;animation-delay:-5s"></div>
+ <div class="gl"><div><div class="logo">${L?`<img src="${L}" alt="">`:"🏫"}</div><div class="tag" style="margin-top:14px">✨ ABSENSI INTRA &amp; EKSTRAKURIKULER DIGITAL</div>
+ <h1>${esc(DB.set.sekolah)}</h1><p>Siswa absen dengan verifikasi wajah dan lokasi sekolah.</p><p>Admin mengelola data, rekap, dan grafik siap cetak PDF.</p>
+ <div class="stt"><div><b>${(S.cnt||{}).siswa||0}</b>Siswa</div><div><b>${ORGS.length}</b>Ekskul</div><div><b>${hd}</b>Hadir hari ini</div></div></div>
+ <div class="pnl"><div class="sw"><button class="${lm=="siswa"?"on":""}" onclick="setLm('siswa')">🎓 Siswa</button><button class="${lm=="admin"?"on":""}" onclick="setLm('admin')">🔐 Admin</button></div>
+ ${lm=="siswa"?`<h2 style="margin:0">Halo, siswa! 👋</h2><p style="margin-top:2px">Masuk dengan NIS atau NISN untuk absen ekskul.</p>
+ <label>NIS / NISN</label><input id="nis" inputmode="numeric" placeholder="Masukkan NIS atau NISN" onkeydown="event.key=='Enter'&&loginS()"><button onclick="loginS()">Masuk →</button>`
+ :`<h2 style="margin:0">Selamat datang 👋</h2><p style="margin-top:2px">Masuk sebagai admin untuk mengelola absensi.</p>
+ <label>Username</label><input id="u" placeholder="admin" autocomplete="username"><label>Password</label><input id="p" type="password" placeholder="••••••••" autocomplete="current-password" onkeydown="event.key=='Enter'&&loginA()">
+ <label class="sp"><input type="checkbox" onchange="$('#p').type=this.checked?'text':'password'">Tampilkan password</label><button onclick="loginA()">Masuk →</button>`}${S.msg}<div style="text-align:center;margin-top:18px;font-size:12px;opacity:.85">Designed by: Teacher AKK</div></div></div></div></div>`}
+ if(S.v=="student")return studentV();
+ adminV()}
+async function loginS(){try{S.me=await api("/api/student",{action:"login",id:$("#nis").value.trim()});S.org=null;go("student")}catch(e){S.msg='<div class="msg er">'+esc(e.message)+'</div>';render()}}
+async function loginA(){USER=$("#u").value;PASS=$("#p").value;try{await ld();go("admin","dash")}catch(e){PASS="";S.msg='<div class="msg er">'+esc(e.message)+'</div>';render()}}
+function studentV(){const s=S.me;
+ app.innerHTML=`<div class="r"><h3 style="flex:1">Halo, ${esc(s.nama)} (${esc(s.kelas)})</h3><button class="g" onclick="S.me=null;go('home')">Keluar</button></div>
+ <div class="c"><h3>Absen Ekstrakurikuler</h3>${S.org?`<p>Organisasi: <b>${S.org}</b> <button class="g" onclick="stopCam();S.org=null;S.msg='';render()">Ganti</button></p>
+ <video id="vid" autoplay playsinline muted></video><canvas id="cv" width="96" height="96" hidden></canvas>
+ <div class="r" style="margin-top:10px"><button onclick="absen()">Absen dengan Wajah</button></div>
+ <p style="color:var(--mu);font-size:13px">${s.face?"Wajah akan dicocokkan dengan data wajah Anda.":"Absen pertama: wajah Anda didaftarkan sebagai data acuan."}</p><div id="st">${S.msg}</div>`
+ :`<p>Pilih organisasi, lalu absen dengan wajah Anda:</p><div class="g4">${ORGS.map(o=>`<button class="org" onclick="pick('${o}')">${o}</button>`).join("")}</div>`}</div>`;
+ if(S.org)startCam()}
+function pick(o){S.org=o;S.msg="";render()}
+async function startCam(){try{S.stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"user"}});$("#vid").srcObject=S.stream}catch(e){$("#st").innerHTML='<div class="msg er">Kamera tidak bisa diakses. Izinkan akses kamera.</div>'}}
+const dist=(a,b,c,d)=>{const R=6371000,r=x=>x*Math.PI/180,h=Math.sin(r(c-a)/2)**2+Math.cos(r(a))*Math.cos(r(c))*Math.sin(r(d-b)/2)**2;return 2*R*Math.asin(Math.sqrt(h))};
+const say=(t,k)=>{$("#st").innerHTML=`<div class="msg ${k}">${t}</div>`};
+function vec(){const v=$("#vid"),c=$("#cv"),x=c.getContext("2d",{willReadFrequently:true}),w=v.videoWidth,h=v.videoHeight,z=Math.min(w,h)*.7;
+ x.drawImage(v,(w-z)/2,(h-z)/2,z,z,0,0,24,24);const d=x.getImageData(0,0,24,24).data,a=[];
+ for(let i=0;i<d.length;i+=4)a.push(.3*d[i]+.59*d[i+1]+.11*d[i+2]);const m=a.reduce((p,q)=>p+q)/a.length;return a.map(q=>q-m)}
+const corr=(a,b)=>{let s=0,x=0,y=0;for(let i=0;i<a.length;i++){s+=a[i]*b[i];x+=a[i]*a[i];y+=b[i]*b[i]}return s/Math.sqrt(x*y||1)};
+async function absen(){const s=S.me,v=$("#vid");
+ if(!v.videoWidth)return say("Kamera belum siap.","er");
+ say("Memeriksa lokasi...","ok");
+ let pos;try{pos=await new Promise((r,j)=>navigator.geolocation.getCurrentPosition(r,j,{enableHighAccuracy:true,timeout:15000}))}catch(e){return say("Lokasi tidak bisa dibaca. Aktifkan GPS dan izinkan lokasi.","er")}
+ say("Memeriksa wajah...","ok");
+ if("FaceDetector"in window){try{const f=await new FaceDetector().detect(v);if(!f.length)return say("Wajah tidak terdeteksi. Absen ditolak.","er")}catch(e){}}
+ const cur=vec();if(Math.sqrt(cur.reduce((p,q)=>p+q*q,0)/cur.length)<15)return say("Bukan wajah (gambar terlalu polos/gelap). Absen ditolak.","er");
+ try{const r=await api("/api/student",{action:"absen",id:s.nis,org:S.org,lat:pos.coords.latitude,lng:pos.coords.longitude,vec:cur.map(x=>Math.round(x*10)/10)});s.face=true;say("✓ "+esc(r.msg),"ok")}catch(e){say(esc(e.message),"er")}}
+const TABS=[["dash","Dashboard"],["siswa","Data Siswa"],["abs","Absen Ekstrakurikuler"],["rekap","Rekap Absen"],["graf","Grafik"],["set","Pengaturan"]];
+function adminV(){stopCam();app.innerHTML=`<div class="r"><h2 style="flex:1">Admin — ${esc(DB.set.sekolah)}</h2><button class="g" onclick="go('home')">Keluar</button></div>
+ <div class="tabs">${TABS.map(t=>`<button class="${S.tab==t[0]?"on":""}" onclick="tab('${t[0]}')">${t[1]}</button>`).join("")}</div><div id="tab"></div>`;
+ ({dash,siswa,abs,rekap,graf,set})[S.tab]()}
+const T=h=>$("#tab").innerHTML=h;
+function tbl(h,rows){return`<div class="tw"><table><tr>${h.map(x=>`<th>${x}</th>`).join("")}</tr>${rows.map(r=>`<tr>${r.map(x=>`<td>${esc(x)}</td>`).join("")}</tr>`).join("")||`<tr><td colspan="${h.length}" style="color:var(--mu)">Belum ada data</td></tr>`}</table></div>`}
+function dash(){const t=today(),n=p=>inR(p,t).length,td=inR("harian",t);
+ T(`<div class="g4">${[["Jumlah Siswa",DB.students.length],["Absen Hari Ini",n("harian")],["Minggu Ini",n("mingguan")],["Bulan Ini",n("bulanan")],["Semester Ini",n("semester")]].map(x=>`<div class="st">${x[0]}<b>${x[1]}</b></div>`).join("")}</div>
+ <div class="c" style="margin-top:14px"><h3>Aktivitas Hari Ini</h3>${tbl(["Jam","NIS","Nama","Kelas","Ekskul"],td.slice().reverse().map(a=>[fmt(a.ts).slice(11),a.nis,a.nama,a.kelas,a.org]))}</div>`)}
+function siswa(){T(`<div class="c"><div class="r"><label style="margin:0">Upload Excel (kolom: NIS, NISN, Nama, Kelas)</label><input type="file" accept=".xlsx,.xls,.csv" onchange="upl(this)"></div>
+ <div class="r"><input id="a1" placeholder="NIS"><input id="a2" placeholder="NISN"><input id="a3" placeholder="Nama"><input id="a4" placeholder="Kelas" size="8"><button onclick="addS()">Tambah Manual</button></div>
+ <div class="r"><input placeholder="Cari siswa/NIS/NISN" value="${esc(S.q)}" oninput="S.q=this.value;rt()"><select id="kl" onchange="S.kl=this.value;rt()"><option value="">Semua Kelas</option>${[...new Set(DB.students.map(s=>s.kelas))].sort().map(k=>`<option ${S.kl==k?"selected":""}>${esc(k)}</option>`).join("")}</select>
+ <select onchange="S.so=this.value;rt()"><option value="nama">Urutkan: Nama</option><option value="nis" ${S.so=="nis"?"selected":""}>NIS</option><option value="kelas" ${S.so=="kelas"?"selected":""}>Kelas</option></select>
+ <button onclick="cards()">Cetak Kartu QR</button><button class="d" onclick="delAll()">Hapus Semua</button></div><div id="tb"></div></div>`);rt()}
+const fl=()=>DB.students.filter(s=>(!S.kl||s.kelas==S.kl)&&(s.nama+s.nis+s.nisn).toLowerCase().includes(S.q.toLowerCase())).sort((a,b)=>String(a[S.so]).localeCompare(String(b[S.so]),"id",{numeric:true}));
+function rt(){$("#tb").innerHTML=`<div class="tw"><table><tr><th>NIS</th><th>NISN</th><th>Nama</th><th>Kelas</th><th>Wajah</th><th></th></tr>${fl().map(s=>`<tr><td>${esc(s.nis)}</td><td>${esc(s.nisn)}</td><td>${esc(s.nama)}</td><td>${esc(s.kelas)}</td><td>${s.face?`✓ <a href="#" onclick="rf('${esc(s.nis)}');return false">reset</a>`:"-"}</td><td><button class="d" onclick="del('${esc(s.nis)}')">Hapus</button></td></tr>`).join("")}</table></div><p style="color:var(--mu)">${fl().length} siswa</p>`}
+function delAll(){if(!DB.students.length)return alert("Data siswa sudah kosong");if(confirm("Hapus SEMUA data siswa ("+DB.students.length+" siswa)? Riwayat absen tidak ikut terhapus. Tindakan ini tidak bisa dibatalkan.")){DB.students=[];save();siswa()}}
+function rf(n){A("resetFace",{nis:n}).then(()=>{DB.students.find(s=>s.nis==n).face=false;rt()}).catch(e=>alert(e.message))}
+function del(n){if(confirm("Hapus siswa ini?")){DB.students=DB.students.filter(s=>s.nis!=n);save();siswa()}}
+function addS(){const v=i=>$("#a"+i).value.trim();if(!v(1)||!v(3))return alert("NIS dan Nama wajib diisi");
+ if(DB.students.some(s=>s.nis==v(1)))return alert("NIS sudah ada");DB.students.push({nis:v(1),nisn:v(2),nama:v(3),kelas:v(4),face:null});save();siswa()}
+async function upl(i){const f=i.files[0];if(!f)return;const wb=XLSX.read(await f.arrayBuffer()),rows=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);let n=0;
+ rows.forEach(r=>{const g=k=>{const key=Object.keys(r).find(x=>x.trim().toLowerCase()==k);return key?String(r[key]).trim():""};
+ const nis=g("nis");if(!nis||DB.students.some(s=>s.nis==nis))return;DB.students.push({nis,nisn:g("nisn"),nama:g("nama"),kelas:g("kelas"),face:null});n++});
+ save();alert(n+" siswa ditambahkan");siswa()}
+function cards(){const P=$("#print");P.innerHTML="";fl().forEach(s=>{const d=document.createElement("div");d.className="card";d.innerHTML=`<b>${esc(DB.set.sekolah)}</b><div style="font-size:12px">KARTU SISWA</div><div class="q" style="display:flex;justify-content:center;margin:6px"></div><b>${esc(s.nama)}</b><div style="font-size:12px">NIS ${esc(s.nis)} · NISN ${esc(s.nisn)}<br>Kelas ${esc(s.kelas)}</div>`;
+ P.appendChild(d);new QRCode(d.querySelector(".q"),{text:s.nis,width:90,height:90})});setTimeout(()=>print(),400)}
+function abs(){T(`<div class="c"><div class="g4">${ORGS.map((o,i)=>`<button class="org" style="border-left:5px solid ${COL[i]};${S.org==o?"outline:2px solid var(--pr)":""}" onclick="S.org='${o}';stopCam();abs()">${o}</button>`).join("")}</div></div><div id="ap"></div>`);absP()}
+function absP(){if(!S.org)return $("#ap").innerHTML='<p style="color:var(--mu)">Pilih organisasi untuk mulai absen.</p>';
+ $("#ap").innerHTML=`<div class="c"><h3>${S.org} — ${today()}</h3><div class="r"><input id="mn" placeholder="NIS / NISN" onkeydown="event.key=='Enter'&&mk(this.value)"><button onclick="mk($('#mn').value)">Absen</button><button class="g" onclick="scan()">Scan Kartu QR</button><button class="g" onclick="stopCam();$('#vid').hidden=true">Tutup Kamera</button></div>
+ <video id="vid" hidden playsinline muted style="transform:none"></video><canvas id="cv" hidden></canvas><div id="st"></div><div id="lst"></div></div>`;lst()}
+function lst(){const l=inR("harian",today()).filter(a=>a.org==S.org);$("#lst").innerHTML=`<h3>Hadir hari ini (${l.length})</h3>`+tbl(["Jam","NIS","Nama","Kelas"],l.slice().reverse().map(a=>[fmt(a.ts).slice(11),a.nis,a.nama,a.kelas]))}
+async function mk(id){id=String(id).trim();if(!id)return;try{const r=await A("mark",{id,org:S.org});DB.att.push(r.att);say("✓ "+esc(r.att.nama)+" ("+esc(r.att.kelas)+") hadir di "+S.org,"ok");const m=$("#mn");if(m){m.value="";m.focus()}lst()}catch(e){say(esc(e.message),"er")}}
+let lastQ="",lastT=0;
+function setLm(m){S.lm=m;S.msg="";render()}
+async function scan(){const v=$("#vid");try{stopCam();S.stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"}});v.srcObject=S.stream;v.hidden=false;await v.play();tick()}catch(e){say("Kamera tidak bisa diakses. Izinkan akses kamera.","er")}}
+function tick(){const v=$("#vid");if(!v||!S.stream)return;if(v.videoWidth){const c=$("#cv"),x=c.getContext("2d",{willReadFrequently:true});c.width=v.videoWidth;c.height=v.videoHeight;x.drawImage(v,0,0);
+ const r=jsQR(x.getImageData(0,0,c.width,c.height).data,c.width,c.height);if(r&&(r.data!=lastQ||Date.now()-lastT>4000)){lastQ=r.data;lastT=Date.now();mk(r.data)}}requestAnimationFrame(tick)}
+const PER=["harian","mingguan","bulanan","semester","tahunan"];
+const ctl=(f,pdf)=>`<div class="r"><select id="pr" onchange="${f}()">${PER.map(p=>`<option value="${p}">${p[0].toUpperCase()+p.slice(1)}</option>`).join("")}</select><input type="date" id="dt" value="${today()}" onchange="${f}()"><button onclick="${pdf}()">Cetak PDF</button></div>`;
+const cur=()=>({p:$("#pr").value,d:$("#dt").value}),lbl=()=>{const{p,d}=cur(),[a,b]=range(p,d);return`Rekap ${p} (${ymd(a)} s/d ${ymd(b-864e5)})`};
+function rekap(){T(`<div class="c">${ctl("rk","rkPdf")}<div id="rk"></div></div>`);rk()}
+function rk(){const l=inR(cur().p,cur().d);$("#rk").innerHTML=`<p>${lbl()} — ${l.length} data</p>`+tbl(["No","Tanggal","NIS","Nama","Kelas","Ekskul","Waktu"],l.map((a,i)=>[i+1,ymd(a.ts),a.nis,a.nama,a.kelas,a.org,fmt(a.ts).slice(11)]))}
+function pdfBase(title){const D=new jspdf.jsPDF(),s=DB.set;let y=14;
+ if(s.logo){try{D.addImage(s.logo,s.logo.includes("png")?"PNG":"JPEG",14,8,20,20)}catch(e){}}
+ D.setFontSize(14);D.text(s.sekolah,s.logo?38:14,16);D.setFontSize(11);D.text(title,s.logo?38:14,23);D.line(14,31,196,31);return D}
+function sign(D,y){const s=DB.set;if(y>240){D.addPage();y=20}D.setFontSize(10);
+ D.text("Mengetahui,",20,y);D.text("Kepala Sekolah",20,y+5);D.text(s.kepsek||"................",20,y+30);D.text("NIP. "+(s.nipKepsek||"...."),20,y+35);
+ D.text("Pembina",130,y+5);D.text(s.pembina||"................",130,y+30);D.text("NIP. "+(s.nipPembina||"...."),130,y+35)}
+function rkPdf(){const l=inR(cur().p,cur().d),D=pdfBase(lbl());D.autoTable({startY:35,head:[["No","Tanggal","NIS","Nama","Kelas","Ekskul","Waktu"]],body:l.map((a,i)=>[i+1,ymd(a.ts),a.nis,a.nama,a.kelas,a.org,fmt(a.ts).slice(11)]),styles:{fontSize:8}});
+ sign(D,D.lastAutoTable.finalY+14);D.save("rekap-absen.pdf")}
+function graf(){T(`<div class="c">${ctl("gr","grPdf")}<canvas id="ch" width="900" height="420" style="width:100%;border-radius:8px;background:#fff"></canvas></div>`);gr()}
+function gr(){const l=inR(cur().p,cur().d),v=ORGS.map(o=>l.filter(a=>a.org==o).length),c=$("#ch"),x=c.getContext("2d"),W=c.width,H=c.height;
+ x.fillStyle="#fff";x.fillRect(0,0,W,H);x.fillStyle="#222";x.font="bold 16px sans-serif";x.fillText(lbl(),20,24);
+ const mx=Math.max(1,...v),bw=(W-60)/ORGS.length,base=H-90;x.strokeStyle="#ccc";x.beginPath();x.moveTo(40,base);x.lineTo(W-10,base);x.stroke();
+ v.forEach((n,i)=>{const h=(base-50)*n/mx,X=45+i*bw;x.fillStyle=COL[i];x.fillRect(X,base-h,bw-8,h);x.fillStyle="#222";x.font="12px sans-serif";x.fillText(n,X+(bw-8)/2-4,base-h-4);
+ x.save();x.translate(X+bw/2-4,base+8);x.rotate(Math.PI/3);x.font="11px sans-serif";x.fillText(ORGS[i],0,0);x.restore()})}
+function grPdf(){const D=pdfBase("Grafik Kehadiran — "+lbl());D.addImage($("#ch").toDataURL("image/png"),"PNG",14,36,182,84);sign(D,135);D.save("grafik-absen.pdf")}
+function set(){const s=DB.set,f=(k,l,t="text")=>`<div><label>${l}</label><input id="s_${k}" type="${t}" value="${esc(s[k])}" style="width:100%"></div>`;
+ T(`<div class="c"><div class="g4" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">${f("sekolah","Nama sekolah")}${f("kepsek","Nama Kepala Sekolah")}${f("nipKepsek","NIP Kepala Sekolah")}${f("pembina","Nama Pembina")}${f("nipPembina","NIP Pembina")}
+ <div><label>Logo sekolah (JPG/PNG)</label><input type="file" id="lg" accept="image/png,image/jpeg"></div>
+ <div><label>Password admin baru (kosongkan jika tidak diganti)</label><input id="np" type="password" style="width:100%"></div></div>
+ <h3 style="margin-top:16px">Area absen (titik pusat sekolah)</h3><div class="g4" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">${f("lat","Latitude","number")}${f("lng","Longitude","number")}${f("rad","Radius (meter)","number")}</div>
+ <div class="r" style="margin-top:12px"><button onclick="saveS()">Simpan</button><button class="g" onclick="locNow()">Pakai lokasi saya saat ini</button></div><div id="sm"></div></div>`)}
+function locNow(){navigator.geolocation.getCurrentPosition(p=>{$("#s_lat").value=p.coords.latitude;$("#s_lng").value=p.coords.longitude},()=>alert("Lokasi tidak tersedia"),{enableHighAccuracy:true})}
+async function saveS(){const s=DB.set;["sekolah","kepsek","nipKepsek","pembina","nipPembina"].forEach(k=>s[k]=$("#s_"+k).value);
+ ["lat","lng","rad"].forEach(k=>s[k]=parseFloat($("#s_"+k).value)||s[k]);
+ const np=$("#np").value;const f=$("#lg").files[0];if(f)s.logo=await new Promise(r=>{const R=new FileReader();R.onload=()=>r(R.result);R.readAsDataURL(f)});
+ try{await A("saveSettings",{set:s,newPass:np});if(np)PASS=np;$("#sm").innerHTML='<div class="msg ok">Tersimpan.</div>'}catch(e){$("#sm").innerHTML='<div class="msg er">'+esc(e.message)+'</div>'}}
+render();api("/api/student",{action:"info"}).then(r=>{DB.set.sekolah=r.sekolah;DB.set.logo=r.logo;S.cnt=r;if(S.v=="home"||S.v=="alogin")render()}).catch(e=>{S.msg='<div class="msg er">'+esc(e.message)+'</div>';render()});
+</script></body></html>
